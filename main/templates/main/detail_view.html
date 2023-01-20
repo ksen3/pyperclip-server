@@ -1,0 +1,34 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    Запись
+{% endblock %}
+
+
+{% block message %}
+
+{% endblock %}
+
+
+{% block alert %}
+    <div class="alert alert-light" role="alert">
+        Детализация записи
+    </div>
+{% endblock %}
+
+
+{% block main %}
+    <div class="card text-center">
+      <div class="card-header">
+        {{ object.user }} | {{ object.ip }}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Пользователь скопировал:</h5>
+        <p class="card-text">{{ object.data }}</p>
+        <a href="{% url 'details' %}" class="btn btn-success">Назад</a>
+      </div>
+      <div class="card-footer text-muted">
+        {{ object.time }}
+      </div>
+    </div>
+{% endblock %}

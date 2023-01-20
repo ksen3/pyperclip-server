@@ -1,0 +1,68 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    Регистрация
+{% endblock %}
+
+
+{% block alert %}
+    <div class="alert alert-light" role="alert">
+        После регистрации на сайте, просматривать данные вы сможете после одобрения администратором вашей учетной записи
+    </div>
+{% endblock %}
+
+{% block main %}
+    <h1>Registration</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% if form.non_field_errors or form.errors %}
+        <div class="alert alert-danger" role="alert">
+            <style>
+                li { list-style-type: none; }
+            </style>
+            {{ form.non_field_errors }}
+            {{ form.errors }}
+        </div>
+        {% endif %}
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">&#128373;</span>
+          {{ form.username }}
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon2">&#128274;</span>
+          {{ form.password1 }}
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon3">&#128274;</span>
+          {{ form.password2 }}
+        </div>
+
+        <div class="row">
+          <div class="col"><a class="btn btn-success" href="{% url 'index' %}">На главную</a></div>
+          <div class="col"><button type="submit" class="btn btn-success">Регистрация</button></div>
+        </div>
+
+    </form>
+{% endblock %}
+
+<!--
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">&#128373;</span>
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon2">&#128274;</span>
+              <input type="text" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon2">
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon3">&#128274;</span>
+              <input type="text" class="form-control" placeholder="Repeat password" aria-label="Username" aria-describedby="basic-addon3">
+            </div>
+-->

@@ -1,0 +1,60 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block message %}
+    {% for message in messages %}
+        <div class="container-fluid p-0">
+            <div class="alert {{ message.tags }} alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block alert %}
+    <div class="alert alert-light" role="alert">
+        Добро пожаловать на шпион-сервер. Зарегистируйтесь или войдите, чтобы продолжить
+    </div>
+{% endblock %}
+
+{% block main %}
+        <h1>SPY</h1>
+        {% if request.user.is_authenticated%}
+            <a class="btn btn-success" href="{% url 'details' %}">Данные</a>
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        <style>
+                            li { list-style-type: none; }
+                        </style>
+                      {{ form.non_field_errors }}
+                    </div>
+                    {% endif %}
+
+
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">&#128373;</span>
+                  {{ form.username }}
+                </div>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon2">&#128274;</span>
+                  {{ form.password }}
+                </div>
+
+                  <div class="row">
+                      <div class="col"><button type="submit" class="btn btn-success">Войти</button></div>
+                      <div class="col"><a class="btn btn-success" href="{% url 'register' %}">Регистрация</a></div>
+                  </div>
+            </form>
+        {% endif %}
+
+{% endblock %}
