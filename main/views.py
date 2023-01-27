@@ -39,6 +39,8 @@ class Details(LoginRequiredMixin, ListView):
     login_url = 'index'
     redirect_field_name = 'index'
     paginate_by = 15
+    context_object_name = 'list'
+
 
 class DetailView(DetailView):
     model = Data
